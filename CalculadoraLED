@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LedPower PRO v11.6 - Final</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#05070a">
+
+    <style>
+        :root {
+            --bg: #05070a; --card: #111827; --accent: #06b6d4;
+            --text: #f9fafb; --dim: #64748b; --danger: #ef4444; --warning: #f59e0b; --success: #10b981; --wa: #25d366;
+            --pixel: #a855f7;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 10px; display: flex; justify-content: center; }
+        .app { width: 100%; max-width: 400px; background: var(--card); padding: 15px; border-radius: 20px; border: 1px solid #1f2937; box-sizing: border-box; }
+        .header h1 { font-size: 0.9rem; letter-spacing: 2px; text-align: center; color: var(--accent); margin: 0 0 12px 0; }
+        
+        .mode-switch { background: #000; padding: 3px; border-radius: 8px; display: flex; margin-bottom: 10px; border: 1px solid #1f2937; }
+        .mode-btn { flex: 1; padding: 8px; border-radius: 6px; border: none; background: transparent; color: var(--dim); cursor: pointer; font-size: 0.65rem; font-weight: bold; }
+        .mode-btn.active { background: var(--accent); color: #000; }
+
+        .mod-px-card { background: rgba(168, 85, 247, 0.15); border: 1px solid var(--pixel); padding: 6px; border-radius: 12px; margin-top: 8px; text-align: center; }
+        .mod-px-res { font-size: 0.75rem; font-weight: 800; display: block; color: var(--pixel); }
+        .mod-info-line { font-size: 0.52rem; color: var(--text); opacity: 0.8; display: block; }
+        .mod-amp-unit { font-size: 0.6rem; color: var(--accent); font-weight: bold; display: block; margin-top: 2px; }
+        .mod-dist-val { font-size: 0.55rem; color: var(--warning); font-weight: bold; display: block; margin-top: 3px; border-top: 1px solid rgba(168,85,247,0.3); padding-top: 3px; text-transform: uppercase; }
+
+        .main-display { background: #000; border: 1px solid var(--accent); padding: 12px; border-radius: 15px; text-align: center; margin-bottom: 10px; }
+        .main-val { font-size: 2.2rem; font-weight: 800; color: #fff; background: transparent; border: none; text-align: center; width: 100%; outline: none; }
+        
+        .section { background: rgba(255,255,255,0.02); padding: 10px; border-radius: 12px; margin-bottom: 8px; border: 1px solid #1f2937; }
+        label { font-size: 0.6rem; color: var(--dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
+        
+        .compact-grid { display: grid; grid-template-columns: 1.3fr 0.7fr 1fr; gap: 8px; align-items: start; }
+        .slim-input { background: #000; border: 1px solid #374151; color: #fff; padding: 8px; border-radius: 6px; width: 100%; box-sizing: border-box; font-size: 0.85rem; text-align: center; outline: none; }
+        select { background: #000; border: 1px solid #374151; color: #fff; padding: 8px; border-radius: 6px; width: 100%; font-size: 0.7rem; outline: none; height: 38px; }
+
+        .brillo-container { display: flex; align-items: center; gap: 10px; background: #000; padding: 8px 12px; border-radius: 8px; border: 1px solid #374151; }
+        #brillo { flex: 1; accent-color: var(--accent); cursor: pointer; height: 6px; }
+        #bval { min-width: 35px; text-align: right; font-size: 0.8rem; font-weight: bold; color: var(--accent); }
+
+        .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+        .res-card { background: #000; padding: 10px; border-radius: 10px; border: 1px solid #1f2937; text-align: center; transition: 0.3s; }
+        .res-val { display: block; font-size: 1.1rem; font-weight: bold; }
+        .res-lbl { font-size: 0.55rem; color: var(--dim); text-transform: uppercase; }
+        
+        .bg-ok { border-color: var(--success) !important; color: var(--success); }
+        .bg-warn { border-color: var(--warning) !important; color: var(--warning); }
+        .bg-danger { border-color: var(--danger) !important; color: var(--danger); }
+
+        .phase-container { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+        .phase-card { background: #000; padding: 8px 4px; border-radius: 10px; border: 1px solid #1f2937; text-align: center; flex: 1; min-width: 0; border-width: 2px; }
+        .phase-amp { font-size: 0.85rem; font-weight: 800; display: block; }
+
+        .btn-wa { background: var(--wa); color: white; border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: bold; text-align: center; text-decoration: none; display: block; margin-top: 12px; box-shadow: 0 4px 0 #1da851; position: relative; top: 0; cursor: pointer; }
+        .btn-wa:active { top: 2px; box-shadow: 0 2px 0 #1da851; }
+        .firma { margin-top: 15px; text-align: center; font-size: 0.55rem; color: var(--dim); letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="app">
+    <div class="header"><h1>LedPOWER PRO v11.6</h1></div>
+
+    <div class="mode-switch">
+        <button class="mode-btn active" id="btnDim" onclick="setMode('dim')">MEDIDAS</button>
+        <button class="mode-btn" id="btnQty" onclick="setMode('qty')">CANTIDAD</button>
+    </div>
+
+    <div class="main-display">
+        <span class="res-lbl" id="mainLbl" style="color:var(--accent)">Módulos Totales</span>
+        <input type="number" class="main-val" id="resMod" value="0" oninput="calc()" readonly>
+        <div id="resMatrix" style="font-size:0.65rem; color:var(--dim)">0 x 0 unidades</div>
+        <div id="resFullRes" style="font-size:0.7rem; color:var(--pixel); font-weight:bold; margin-top:4px;">0 x 0 px (0 px²)</div>
+    </div>
+
+    <div id="sectionDim" class="section">
+        <div style="display:flex; gap:8px;">
+            <div style="flex:1"><label>Pantalla (m)</label><div style="display:flex; gap:4px; align-items:center"><input type="number" id="sw" class="slim-input" value="5" oninput="calc()"><span>x</span><input type="number" id="sh" class="slim-input" value="3" oninput="calc()"></div></div>
+            <div style="flex:1"><label>Módulo (cm)</label><div style="display:flex; gap:4px; align-items:center"><input type="number" id="mw" class="slim-input" value="50" oninput="calc()"><span>x</span><input type="number" id="mh" class="slim-input" value="50" oninput="calc()"></div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="compact-grid">
+            <div>
+                <label>PITCH (mm)</label>
+                <select id="pitch" onchange="calc()">
+                    <optgroup label="Indoor">
+                        <option value="1.2" data-w="400">P1.2 Indoor</option>
+                        <option value="1.5" data-w="500">P1.5 Indoor</option>
+                        <option value="1.8" data-w="550">P1.8 Indoor</option>
+                        <option value="2.6" data-w="600" selected>P2.6 Indoor</option>
+                        <option value="2.9" data-w="650">P2.9 Indoor</option>
+                        <option value="3.9" data-w="750">P3.9 Indoor</option>
+                    </optgroup>
+                    <optgroup label="Outdoor">
+                        <option value="2.9" data-w="850">P2.9 Outdoor</option>
+                        <option value="3.9" data-w="950">P3.9 Outdoor</option>
+                        <option value="4.8" data-w="1000">P4.8 Outdoor</option>
+                        <option value="5.9" data-w="1200">P5.9 Outdoor</option>
+                        <option value="10" data-w="1500">P10 Outdoor</option>
+                    </optgroup>
+                </select>
+                <div class="mod-px-card">
+                    <span id="modPxVal" class="mod-px-res">0 x 0 PX</span>
+                    <span id="modPxTotal" class="mod-info-line">0 px²</span>
+                    <span id="modAmpUnit" class="mod-amp-unit">0.00A / mod</span>
+                    <span id="modDist" class="mod-dist-val">VISIÓN: 0m</span>
+                </div>
+            </div>
+
+            <div><label>Volt</label><select id="volt" onchange="calc()"><option value="110">110V</option><option value="220">220V</option></select></div>
+            
+            <div><label>Fases</label>
+                <select id="selPhases" onchange="setPhase(this.value)">
+                    <option value="1">1 FASE</option>
+                    <option value="2">2 FASES</option>
+                    <option value="3" selected>3 FASES</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <label>Balance Amperaje (L1/L2/L3)</label>
+        <div class="phase-container" id="phaseDisplay"></div>
+    </div>
+
+    <div class="section">
+        <label>Ajuste de Brillo & Caída Tensión</label>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:8px;">
+            <div class="brillo-container">
+                <input type="range" id="brillo" min="5" max="100" value="100" oninput="calc()">
+                <span id="bval">100%</span>
+            </div>
+            <div><input type="number" id="dist" class="slim-input" style="height:38px;" value="10" oninput="calc()"><label style="text-align:center; margin-top:2px;">Dist (m)</label></div>
+        </div>
+    </div>
+
+    <div class="results-grid">
+        <div class="res-card" id="cardWatt"><span class="res-val" id="resWatt">0W</span><span class="res-lbl">Watts Totales</span></div>
+        <div class="res-card" id="cardBrk"><span class="res-val" id="resBrk">0A</span><span class="res-lbl">Pastilla / Fase</span></div>
+        <div class="res-card" id="cardCab"><span class="res-val" id="resCab">0</span><span class="res-lbl">CALIBRE AWG</span></div>
+        <div class="res-card" id="cardDrop"><span class="res-val" id="resDrop">0%</span><span class="res-lbl">Caída Tensión</span></div>
+    </div>
+
+    <a href="#" id="waLink" class="btn-wa">ENVIAR REPORTE TÉCNICO</a>
+    <div class="firma">V11.6 | <span>15c0</span></div>
+</div>
+
+<script>
+let currentMode = 'dim';
+let currentPhases = 3;
+let reportMsg = "";
+
+function setMode(m) {
+    currentMode = m;
+    document.getElementById('resMod').readOnly = (m === 'dim');
+    document.getElementById('btnDim').classList.toggle('active', m === 'dim');
+    document.getElementById('btnQty').classList.toggle('active', m === 'qty');
+    calc();
+}
+
+function setPhase(p) {
+    currentPhases = parseInt(p);
+    calc();
+}
+
+function calc() {
+    const mw_cm = parseFloat(document.getElementById('mw').value) || 50;
+    const mh_cm = parseFloat(document.getElementById('mh').value) || 50;
+    const pitch = parseFloat(document.getElementById('pitch').value);
+    const pW = parseInt(document.getElementById('pitch').options[document.getElementById('pitch').selectedIndex].dataset.w);
+    const volt = parseInt(document.getElementById('volt').value);
+    const brillo = parseInt(document.getElementById('brillo').value);
+    const dist = parseFloat(document.getElementById('dist').value);
+    
+    document.getElementById('bval').innerText = brillo + "%";
+
+    // 1. Datos Módulo
+    const mw_px = Math.floor((mw_cm * 10) / pitch);
+    const mh_px = Math.floor((mh_cm * 10) / pitch);
+    const areaMod = (mw_cm/100) * (mh_cm/100);
+    const ampMod = (areaMod * pW * (brillo/100)) / volt;
+
+    document.getElementById('modPxVal').innerText = `${mw_px} x ${mh_px} PX`;
+    document.getElementById('modPxTotal').innerText = `${(mw_px * mh_px).toLocaleString()} px²`;
+    document.getElementById('modAmpUnit').innerText = `${ampMod.toFixed(2)}A / mod`;
+    document.getElementById('modDist').innerText = `VISIÓN: ${pitch.toFixed(1)}m`;
+
+    // 2. Unidades y Resolución de Pantalla
+    let modsH = 0, modsV = 0, totalMods = 0;
+    if(currentMode === 'dim') {
+        const sw = parseFloat(document.getElementById('sw').value) || 0;
+        const sh = parseFloat(document.getElementById('sh').value) || 0;
+        modsH = Math.ceil(sw / (mw_cm/100));
+        modsV = Math.ceil(sh / (mh_cm/100));
+        totalMods = modsH * modsV;
+        document.getElementById('resMod').value = totalMods;
+        document.getElementById('resMatrix').innerText = `${modsH} x ${modsV} unidades`;
+    } else {
+        totalMods = parseInt(document.getElementById('resMod').value) || 0;
+        modsH = Math.ceil(Math.sqrt(totalMods * 1.77)); 
+        modsV = Math.ceil(totalMods / modsH);
+        document.getElementById('resMatrix').innerText = `Matriz aprox: ${modsH} x ${modsV}`;
+    }
+
+    const fullPxH = modsH * mw_px;
+    const fullPxV = modsV * mh_px;
+    const fullPxSq = fullPxH * fullPxV;
+    document.getElementById('resFullRes').innerText = `${fullPxH} x ${fullPxV} px (${fullPxSq.toLocaleString()} px²)`;
+
+    // 3. Electricidad & Fases
+    const wReal = (totalMods * areaMod) * pW * (brillo / 100);
+    const mBase = Math.floor(totalMods / currentPhases);
+    const residuo = totalMods % currentPhases;
+    const modsF = Array(currentPhases).fill(mBase).map((v, i) => i < residuo ? v + 1 : v);
+    
+    let htmlPhases = "";
+    let maxAmp = 0;
+    const colors = ["#ffffff", "#ef4444", "#3b82f6"];
+
+    modsF.forEach((m, i) => {
+        const ampF = (m * areaMod * pW * (brillo/100)) / volt;
+        if(ampF > maxAmp) maxAmp = ampF;
+        let sem = (ampF > 50) ? "var(--danger)" : (ampF > 32) ? "var(--warning)" : "var(--success)";
+        htmlPhases += `<div class="phase-card" style="border-color:${sem}">
+            <span style="color:${colors[i]}; font-size:0.6rem; font-weight:800">L${i+1}</span>
+            <span class="phase-amp" style="color:${sem}">${ampF.toFixed(1)}A</span>
+            <span style="font-size:0.5rem; color:var(--dim)">${m} mod</span>
+        </div>`;
+    });
+    document.getElementById('phaseDisplay').innerHTML = htmlPhases;
+
+    // 4. Resultados & Cable
+    const ampTarget = maxAmp * 1.25;
+    const breakers = [15, 20, 30, 40, 50, 60, 70, 80, 100, 125, 150];
+    let bSelected = breakers.find(b => b >= ampTarget) || "+150";
+
+    document.getElementById('resWatt').innerText = Math.round(wReal) + "W";
+    document.getElementById('resBrk').innerHTML = `${bSelected}A <small style="display:block; font-size:0.55rem; color:var(--dim)">${maxAmp.toFixed(1)}A p/fase</small>`;
+    
+    let cab = "#12", sec = 3.31;
+    if(ampTarget > 20) { cab = "#10"; sec = 5.26; }
+    if(ampTarget > 30) { cab = "#8"; sec = 8.36; }
+    if(ampTarget > 45) { cab = "#6"; sec = 13.3; }
+    if(ampTarget > 65) { cab = "#4"; sec = 21.1; }
+    document.getElementById('resCab').innerText = cab + " AWG";
+
+    const vDropPerc = (((2 * dist * maxAmp * 0.0172) / sec) / volt) * 100;
+    document.getElementById('resDrop').innerText = vDropPerc.toFixed(1) + "%";
+    document.getElementById('cardDrop').className = "res-card " + (vDropPerc <= 3 ? "bg-ok" : vDropPerc <= 5 ? "bg-warn" : "bg-danger");
+
+    // REPORTE WHATSAPP
+    reportMsg = `⚡ *REPORTE LEDPOWER PRO* ⚡
+--------------------------
+📐 PANTALLA: ${fullPxH}x${fullPxV} px
+🔳 TOTAL PX: ${fullPxSq.toLocaleString()} px²
+📦 MODULOS: ${totalMods} (${modsH}x${modsV})
+💡 BRILLO: ${brillo}%
+🔥 WATTS: ${Math.round(wReal)}W
+🔋 MAX AMP p/f: ${maxAmp.toFixed(1)}A
+🛡️ PASTILLA: ${bSelected}A
+🧵 CABLE: ${cab} AWG (${dist}m)
+📉 CAIDA V: ${vDropPerc.toFixed(1)}%
+--------------------------`;
+
+    const waBtn = document.getElementById('waLink');
+    waBtn.onclick = function(e) {
+        e.preventDefault();
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (isMobile) {
+            window.location.href = "whatsapp://send?text=" + encodeURIComponent(reportMsg);
+        } else {
+            window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(reportMsg), '_blank');
+        }
+    };
+}
+calc();
+</script>
+</body>
+</html>
