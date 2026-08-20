@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LedPower PRO v16.3 - Acometida & Reserva Real</title>
+    
+    <!-- FAVICON SVG / PNG DINÁMICO (Tema LED Power Screen) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2305070a'/><rect x='2' y='2' width='60' height='60' rx='12' fill='none' stroke='%2306b6d4' stroke-width='2' opacity='0.4'/><rect x='10' y='10' width='20' height='20' rx='3' fill='%2306b6d4'/><rect x='34' y='10' width='20' height='20' rx='3' fill='%23a855f7'/><rect x='10' y='34' width='20' height='20' rx='3' fill='%23a855f7'/><rect x='34' y='34' width='20' height='20' rx='3' fill='%2306b6d4'/><circle cx='20' cy='20' r='3' fill='%23ffffff'/><circle cx='44' cy='20' r='3' fill='%23ffffff'/><circle cx='20' cy='44' r='3' fill='%23ffffff'/><circle cx='44' cy='44' r='3' fill='%23ffffff'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2305070a'/><rect x='10' y='10' width='20' height='20' rx='3' fill='%2306b6d4'/><rect x='34' y='10' width='20' height='20' rx='3' fill='%23a855f7'/><rect x='10' y='34' width='20' height='20' rx='3' fill='%23a855f7'/><rect x='34' y='34' width='20' height='20' rx='3' fill='%2306b6d4'/></svg>">
+
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -227,7 +232,6 @@
         </div>
     </div>
 
-    <!-- TARJETA DINÁMICA DE ACOMETIDA CON CÁLCULO DE RESERVA REAL Y MÍNIMO REQUERIDO -->
     <div class="std-box">
         <span class="std-title">🔌 Acometida Estándar p/ Evento (Planta / Inmueble)</span>
         <span class="std-detail" id="stdMainBreaker"><b>Acometida Sugerida:</b> -</span>
@@ -328,7 +332,6 @@ function calc() {
 
     document.getElementById('bval').innerText = brillo + "%";
 
-    // 1. Datos del Módulo
     const mw_px = Math.floor((mw_cm * 10) / pitch);
     const mh_px = Math.floor((mh_cm * 10) / pitch);
     const areaMod = (mw_cm / 100) * (mh_cm / 100);
@@ -340,7 +343,6 @@ function calc() {
     document.getElementById('modAmpUnit').innerText = `${ampMod.toFixed(2)}A / mod (${Math.round(wModMax)}W)`;
     document.getElementById('modDist').innerText = `DIST. ÓPTIMA: ${pitch.toFixed(1)}m`;
 
-    // 2. Cálculo de Matriz
     let modsH = 0, modsV = 0, totalMods = 0;
     
     if(currentMode === 'dim') {
@@ -373,7 +375,6 @@ function calc() {
     const fullPxV = modsV * mh_px;
     const fullPxSq = fullPxH * fullPxV;
     
-    // Relación de Aspecto
     const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
     const div = gcd(fullPxH, fullPxV) || 1;
     const ratioH = Math.round((fullPxH / div) * 10) / 10;
@@ -381,7 +382,6 @@ function calc() {
     document.getElementById('resFullRes').innerText = `${fullPxH} x ${fullPxV} px (${fullPxSq.toLocaleString()} px²)`;
     document.getElementById('resAspect').innerText = `Relación de Aspecto: ${ratioH}:${ratioV} ${Math.abs((fullPxH/fullPxV) - 1.77) < 0.15 ? ' (Casi 16:9 📺)' : ''}`;
 
-    // 3. Balance Eléctrico por Fase
     const wRealMax = totalMods * wModMax;
     const wRealProm = wRealMax * 0.45;
     
@@ -443,7 +443,6 @@ function calc() {
 
     document.getElementById('phaseDisplay').innerHTML = htmlPhases;
 
-    // 4. Pastilla Pantalla solo
     const ampTargetPantalla = maxAmp * 1.25;
     const breakers = [15, 20, 30, 40, 50, 60, 70, 80, 100, 125, 150, 200];
     let bPantalla = breakers.find(b => b >= ampTargetPantalla) || "+200";
@@ -451,10 +450,9 @@ function calc() {
     document.getElementById('resWatt').innerHTML = `${Math.round(wRealMax)}W <small style="display:block; font-size:0.55rem; color:var(--dim)">Prom: ~${Math.round(wRealProm)}W</small>`;
     document.getElementById('resBrk').innerHTML = `${bPantalla}A <small style="display:block; font-size:0.55rem; color:var(--dim)">${maxAmp.toFixed(1)}A p/fase</small>`;
 
-    // 5. CÁLCULO DE ACOMETIDA, RESERVA Y SUGERENCIA MÍNIMA DE PASTILLA
     const stdBreakers = [30, 50, 70, 100, 150, 200];
-    const ampTotalRequerido = maxAmp * (1 + extraMargin); // Carga Pantalla + Reserva deseada
-    const recBreakerIdeal = stdBreakers.find(b => b >= ampTotalRequerido) || 200; // Breaker comercial óptimo
+    const ampTotalRequerido = maxAmp * (1 + extraMargin);
+    const recBreakerIdeal = stdBreakers.find(b => b >= ampTotalRequerido) || 200;
 
     let selectedStdBreaker = 30;
     if (userStdChoice === "auto") {
@@ -470,10 +468,8 @@ function calc() {
     if (selectedStdBreaker >= 150) { stdGauge = "1/0 AWG"; secStd = 53.5; }
     if (selectedStdBreaker >= 200) { stdGauge = "3/0 AWG"; secStd = 85.0; }
 
-    // MATEMÁTICA Y RESERVAS:
     const reservaDeseadaA = maxAmp * extraMargin;
     const cargaCompromisoTotalA = maxAmp + reservaDeseadaA;
-    const amperajeLibreRealA = selectedStdBreaker - maxAmp; // Amperaje sobrante real de la pastilla seleccionada
     const amperajeLibreTrasReservaA = selectedStdBreaker - cargaCompromisoTotalA;
 
     const totalPhaseMult = (currentPhases === 3 ? 1.732 : (currentPhases === 2 ? 2 : 1));
@@ -488,7 +484,6 @@ function calc() {
         adviceText = `💡🔊 <b>Reserva Amplia (${Math.round(extraMargin*100)}%):</b> Espacio para Audio completo, Barredoras LED de escenario o Iluminación.`;
     }
 
-    // Caída de tensión
     let K = (currentPhases === 3) ? 1.732 : 2.0; 
     const vDropStd = (K * dist * selectedStdBreaker * 0.0172) / secStd;
     const vDropStdPerc = (voltWork > 0) ? (vDropStd / voltWork) * 100 : 0;
@@ -496,7 +491,6 @@ function calc() {
     document.getElementById('stdMainBreaker').innerHTML = `<b>Acometida Seleccionada:</b> ${selectedStdBreaker}A (${currentPhases} Fase${currentPhases > 1 ? 's':''})`;
     document.getElementById('stdMainCable').innerHTML = `<b>Cable Tirón Principal:</b> Calibre ${stdGauge} (${dist}m)`;
     
-    // Inyección de valores desglosados
     document.getElementById('stdDesglosePantalla').innerHTML = `📊 <b>Consumo Pantalla LED:</b> ${maxAmp.toFixed(1)}A por fase`;
     document.getElementById('stdDesgloseReserva').innerHTML = `🛡️ <b>Reserva Deseada (${Math.round(extraMargin*100)}%):</b> +${reservaDeseadaA.toFixed(1)}A p/fase`;
     document.getElementById('stdDesgloseReq').innerHTML = `⚡ <b>Total Requerido (Consumo + Reserva):</b> ${ampTotalRequerido.toFixed(1)}A por fase`;
@@ -512,7 +506,6 @@ function calc() {
     document.getElementById('stdUsageAdvice').innerHTML = adviceText;
     document.getElementById('stdDropVal').innerHTML = `Caída Tensión Tirón: ${vDropStdPerc.toFixed(1)}% ${vDropStdPerc > 3 ? '⚠️ (Utilizar calibre superior)' : '✅ OK'}`;
 
-    // 6. Cableado Por Módulo
     const MAX_CIRCUIT_AMP = 16;
     const maxModsPerChain = Math.floor(MAX_CIRCUIT_AMP / (ampMod || 1)) || 1;
     const totalPowerChains = Math.ceil(totalMods / maxModsPerChain) || 1;
@@ -523,7 +516,6 @@ function calc() {
     document.getElementById('resModGauge').innerHTML = `🧵 <b>Calibre Bajadas/Puentes:</b> ${modCableGauge}`;
     document.getElementById('resModConn').innerHTML = `⚡ <b>Conectores:</b> PowerCON Azul/Gris (20A) / Pastillas 20A en C. Carga`;
 
-    // 7. Procesador y Puertos Gigabit
     const SAFE_PX_PORT = 520000;
     const portsNeeded = Math.ceil(fullPxSq / SAFE_PX_PORT) || 1;
     
@@ -542,7 +534,6 @@ function calc() {
     document.getElementById('resPxPort').innerText = `Total: ${fullPxSq.toLocaleString()} px² (~${Math.round(fullPxSq/portsNeeded).toLocaleString()} px/puerto)`;
     document.getElementById('resProc').innerText = `Procesador recomendado: ${procRec}`;
 
-    // Reporte WhatsApp
     reportMsg = `⚡ *REPORTE TÉCNICO LEDPOWER PRO v16.3* ⚡
 ----------------------------------
 📐 *PANTALLA:* ${fullPxH} x ${fullPxV} px (${fullPxSq.toLocaleString()} px²)
