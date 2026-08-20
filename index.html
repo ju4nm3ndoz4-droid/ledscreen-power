@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LedPower PRO v11.6 - Final</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LedPower PRO v16.3 - Acometida & Reserva Real</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -15,29 +15,30 @@
             --text: #f9fafb; --dim: #64748b; --danger: #ef4444; --warning: #f59e0b; --success: #10b981; --wa: #25d366;
             --pixel: #a855f7;
         }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 10px; display: flex; justify-content: center; }
-        .app { width: 100%; max-width: 400px; background: var(--card); padding: 15px; border-radius: 20px; border: 1px solid #1f2937; box-sizing: border-box; }
-        .header h1 { font-size: 0.9rem; letter-spacing: 2px; text-align: center; color: var(--accent); margin: 0 0 12px 0; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 10px; display: flex; justify-content: center; }
+        .app { width: 100%; max-width: 420px; background: var(--card); padding: 15px; border-radius: 20px; border: 1px solid #1f2937; box-sizing: border-box; }
+        .header h1 { font-size: 0.95rem; letter-spacing: 2px; text-align: center; color: var(--accent); margin: 0 0 12px 0; text-transform: uppercase; }
         
         .mode-switch { background: #000; padding: 3px; border-radius: 8px; display: flex; margin-bottom: 10px; border: 1px solid #1f2937; }
-        .mode-btn { flex: 1; padding: 8px; border-radius: 6px; border: none; background: transparent; color: var(--dim); cursor: pointer; font-size: 0.65rem; font-weight: bold; }
+        .mode-btn { flex: 1; padding: 8px; border-radius: 6px; border: none; background: transparent; color: var(--dim); cursor: pointer; font-size: 0.7rem; font-weight: bold; transition: 0.2s; }
         .mode-btn.active { background: var(--accent); color: #000; }
 
-        .mod-px-card { background: rgba(168, 85, 247, 0.15); border: 1px solid var(--pixel); padding: 6px; border-radius: 12px; margin-top: 8px; text-align: center; }
-        .mod-px-res { font-size: 0.75rem; font-weight: 800; display: block; color: var(--pixel); }
-        .mod-info-line { font-size: 0.52rem; color: var(--text); opacity: 0.8; display: block; }
-        .mod-amp-unit { font-size: 0.6rem; color: var(--accent); font-weight: bold; display: block; margin-top: 2px; }
-        .mod-dist-val { font-size: 0.55rem; color: var(--warning); font-weight: bold; display: block; margin-top: 3px; border-top: 1px solid rgba(168,85,247,0.3); padding-top: 3px; text-transform: uppercase; }
+        .mod-px-card { background: rgba(168, 85, 247, 0.12); border: 1px solid var(--pixel); padding: 8px; border-radius: 10px; margin-top: 8px; text-align: center; }
+        .mod-px-res { font-size: 0.8rem; font-weight: 800; display: block; color: var(--pixel); }
+        .mod-info-line { font-size: 0.6rem; color: var(--text); opacity: 0.85; display: block; margin-top: 2px; }
+        .mod-amp-unit { font-size: 0.65rem; color: var(--accent); font-weight: bold; display: block; margin-top: 2px; }
+        .mod-dist-val { font-size: 0.6rem; color: var(--warning); font-weight: bold; display: block; margin-top: 4px; border-top: 1px solid rgba(168,85,247,0.3); padding-top: 4px; text-transform: uppercase; }
 
         .main-display { background: #000; border: 1px solid var(--accent); padding: 12px; border-radius: 15px; text-align: center; margin-bottom: 10px; }
         .main-val { font-size: 2.2rem; font-weight: 800; color: #fff; background: transparent; border: none; text-align: center; width: 100%; outline: none; }
         
         .section { background: rgba(255,255,255,0.02); padding: 10px; border-radius: 12px; margin-bottom: 8px; border: 1px solid #1f2937; }
-        label { font-size: 0.6rem; color: var(--dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
+        label { font-size: 0.62rem; color: var(--dim); text-transform: uppercase; display: block; margin-bottom: 4px; font-weight: 600; }
         
-        .compact-grid { display: grid; grid-template-columns: 1.3fr 0.7fr 1fr; gap: 8px; align-items: start; }
+        .compact-grid { display: grid; grid-template-columns: 1.1fr 1fr 0.9fr; gap: 8px; align-items: start; }
         .slim-input { background: #000; border: 1px solid #374151; color: #fff; padding: 8px; border-radius: 6px; width: 100%; box-sizing: border-box; font-size: 0.85rem; text-align: center; outline: none; }
-        select { background: #000; border: 1px solid #374151; color: #fff; padding: 8px; border-radius: 6px; width: 100%; font-size: 0.7rem; outline: none; height: 38px; }
+        .slim-input:focus, select:focus { border-color: var(--accent); }
+        select { background: #000; border: 1px solid #374151; color: #fff; padding: 8px; border-radius: 6px; width: 100%; font-size: 0.68rem; outline: none; height: 38px; }
 
         .brillo-container { display: flex; align-items: center; gap: 10px; background: #000; padding: 8px 12px; border-radius: 8px; border: 1px solid #374151; }
         #brillo { flex: 1; accent-color: var(--accent); cursor: pointer; height: 6px; }
@@ -46,42 +47,80 @@
         .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
         .res-card { background: #000; padding: 10px; border-radius: 10px; border: 1px solid #1f2937; text-align: center; transition: 0.3s; }
         .res-val { display: block; font-size: 1.1rem; font-weight: bold; }
-        .res-lbl { font-size: 0.55rem; color: var(--dim); text-transform: uppercase; }
-        
-        .bg-ok { border-color: var(--success) !important; color: var(--success); }
-        .bg-warn { border-color: var(--warning) !important; color: var(--warning); }
-        .bg-danger { border-color: var(--danger) !important; color: var(--danger); }
+        .res-lbl { font-size: 0.58rem; color: var(--dim); text-transform: uppercase; margin-top: 2px; }
 
-        .phase-container { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
-        .phase-card { background: #000; padding: 8px 4px; border-radius: 10px; border: 1px solid #1f2937; text-align: center; flex: 1; min-width: 0; border-width: 2px; }
-        .phase-amp { font-size: 0.85rem; font-weight: 800; display: block; }
+        .phase-container { display: flex; justify-content: center; gap: 6px; margin-top: 6px; }
+        .phase-card { background: #000; padding: 8px 4px; border-radius: 10px; border: 1px solid #1f2937; text-align: center; flex: 1; min-width: 0; border-width: 1.5px; }
+        .phase-amp { font-size: 0.85rem; font-weight: 800; display: block; margin: 2px 0; }
 
-        .btn-wa { background: var(--wa); color: white; border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: bold; text-align: center; text-decoration: none; display: block; margin-top: 12px; box-shadow: 0 4px 0 #1da851; position: relative; top: 0; cursor: pointer; }
+        .proc-box { background: #000; border: 1px solid var(--accent); border-radius: 8px; padding: 8px; text-align: center; }
+        .proc-title { font-size: 0.75rem; font-weight: bold; color: var(--accent); display: block; }
+        .proc-sub { font-size: 0.6rem; color: var(--dim); display: block; margin-top: 2px; }
+        .proc-rec { font-size: 0.65rem; color: var(--success); font-weight: bold; display: block; margin-top: 4px; border-top: 1px dashed #1f2937; padding-top: 4px; }
+
+        .mod-wire-box { background: #000; border: 1px solid var(--warning); border-radius: 8px; padding: 8px; text-align: left; }
+        .mod-wire-title { font-size: 0.72rem; font-weight: bold; color: var(--warning); display: block; text-align: center; margin-bottom: 4px; text-transform: uppercase; }
+        .mod-wire-line { font-size: 0.62rem; color: var(--text); opacity: 0.95; display: block; margin-top: 3px; line-height: 1.3; }
+
+        .std-box { background: rgba(6, 182, 212, 0.08); border: 1px solid var(--accent); border-radius: 10px; padding: 10px; margin-top: 8px; }
+        .std-title { font-size: 0.72rem; font-weight: bold; color: var(--accent); display: block; text-align: center; text-transform: uppercase; margin-bottom: 6px; }
+        .std-detail { font-size: 0.63rem; color: var(--text); display: block; margin-top: 4px; line-height: 1.35; }
+
+        .btn-wa { background: var(--wa); color: white; border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: bold; font-size: 0.85rem; text-align: center; text-decoration: none; display: block; margin-top: 12px; box-shadow: 0 4px 0 #1da851; position: relative; top: 0; cursor: pointer; transition: 0.1s; }
         .btn-wa:active { top: 2px; box-shadow: 0 2px 0 #1da851; }
         .firma { margin-top: 15px; text-align: center; font-size: 0.55rem; color: var(--dim); letter-spacing: 2px; }
+        
+        .info-tag { font-size: 0.65rem; color: var(--accent); background: rgba(6, 182, 212, 0.1); padding: 4px; border-radius: 6px; margin-top: 4px; display: block; font-weight: 600; }
     </style>
 </head>
 <body>
 
 <div class="app">
-    <div class="header"><h1>LedPOWER PRO v11.6</h1></div>
+    <div class="header"><h1>LedPOWER PRO v16.3</h1></div>
 
     <div class="mode-switch">
-        <button class="mode-btn active" id="btnDim" onclick="setMode('dim')">MEDIDAS</button>
-        <button class="mode-btn" id="btnQty" onclick="setMode('qty')">CANTIDAD</button>
+        <button class="mode-btn active" id="btnDim" onclick="setMode('dim')">MEDIDAS (m)</button>
+        <button class="mode-btn" id="btnQty" onclick="setMode('qty')">CANTIDAD (móds)</button>
     </div>
 
     <div class="main-display">
         <span class="res-lbl" id="mainLbl" style="color:var(--accent)">Módulos Totales</span>
         <input type="number" class="main-val" id="resMod" value="0" oninput="calc()" readonly>
-        <div id="resMatrix" style="font-size:0.65rem; color:var(--dim)">0 x 0 unidades</div>
-        <div id="resFullRes" style="font-size:0.7rem; color:var(--pixel); font-weight:bold; margin-top:4px;">0 x 0 px (0 px²)</div>
+        <div id="resMatrix" style="font-size:0.7rem; color:var(--dim); font-weight:600;">0 x 0 unidades</div>
+        <div id="resFullRes" style="font-size:0.75rem; color:var(--pixel); font-weight:bold; margin-top:4px;">0 x 0 px (0 px²)</div>
+        <span id="resAspect" class="info-tag">Relación: -</span>
     </div>
 
-    <div id="sectionDim" class="section">
+    <div class="section">
         <div style="display:flex; gap:8px;">
-            <div style="flex:1"><label>Pantalla (m)</label><div style="display:flex; gap:4px; align-items:center"><input type="number" id="sw" class="slim-input" value="5" oninput="calc()"><span>x</span><input type="number" id="sh" class="slim-input" value="3" oninput="calc()"></div></div>
-            <div style="flex:1"><label>Módulo (cm)</label><div style="display:flex; gap:4px; align-items:center"><input type="number" id="mw" class="slim-input" value="50" oninput="calc()"><span>x</span><input type="number" id="mh" class="slim-input" value="50" oninput="calc()"></div></div>
+            <div style="flex:1" id="boxScreenDim">
+                <label>Pantalla (m)</label>
+                <div style="display:flex; gap:4px; align-items:center">
+                    <input type="number" id="sw" class="slim-input" value="5" step="0.1" oninput="calc()">
+                    <span>x</span>
+                    <input type="number" id="sh" class="slim-input" value="3" step="0.1" oninput="calc()">
+                </div>
+            </div>
+            
+            <div style="flex:1; display:none;" id="boxRatioSelect">
+                <label>Formato Deseado</label>
+                <select id="selRatio" onchange="calc()">
+                    <option value="1.77" selected>16:9 Panorámico (TV)</option>
+                    <option value="1.33">4:3 Estándar</option>
+                    <option value="1.0">1:1 Cuadrado</option>
+                    <option value="0.56">9:16 Vertical (Tótem)</option>
+                    <option value="3.0">3:1 Banner Ultra-Ancho</option>
+                </select>
+            </div>
+
+            <div style="flex:1">
+                <label>Módulo (cm)</label>
+                <div style="display:flex; gap:4px; align-items:center">
+                    <input type="number" id="mw" class="slim-input" value="50" oninput="calc()">
+                    <span>x</span>
+                    <input type="number" id="mh" class="slim-input" value="50" oninput="calc()">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -110,47 +149,125 @@
                     <span id="modPxVal" class="mod-px-res">0 x 0 PX</span>
                     <span id="modPxTotal" class="mod-info-line">0 px²</span>
                     <span id="modAmpUnit" class="mod-amp-unit">0.00A / mod</span>
-                    <span id="modDist" class="mod-dist-val">VISIÓN: 0m</span>
+                    <span id="modDist" class="mod-dist-val">DIST. ÓPTIMA: 0m</span>
                 </div>
             </div>
 
-            <div><label>Volt</label><select id="volt" onchange="calc()"><option value="110">110V</option><option value="220">220V</option></select></div>
+            <div>
+                <label>Voltaje Módulo</label>
+                <select id="volt" onchange="onVoltChange()">
+                    <option value="127MX" selected>120V - 127V (L-N)</option>
+                    <option value="220MX">220V (L-L)</option>
+                </select>
+            </div>
             
-            <div><label>Fases</label>
+            <div>
+                <label>Acometida</label>
                 <select id="selPhases" onchange="setPhase(this.value)">
-                    <option value="1">1 FASE</option>
-                    <option value="2">2 FASES</option>
-                    <option value="3" selected>3 FASES</option>
+                    <option value="1">1 FASE (Monofásico)</option>
+                    <option value="2">2 FASES (Bifásico)</option>
+                    <option value="3" selected>3 FASES (Trifásico)</option>
                 </select>
             </div>
         </div>
     </div>
 
     <div class="section">
-        <label>Balance Amperaje (L1/L2/L3)</label>
+        <label id="lblReparticion">Repartición de Módulos & Amperaje / Fase</label>
         <div class="phase-container" id="phaseDisplay"></div>
     </div>
 
     <div class="section">
-        <label>Ajuste de Brillo & Caída Tensión</label>
+        <label>Ajuste de Brillo & Distancia Cable Acometida</label>
         <div style="display:grid; grid-template-columns: 2fr 1fr; gap:8px;">
             <div class="brillo-container">
-                <input type="range" id="brillo" min="5" max="100" value="100" oninput="calc()">
+                <input type="range" id="brillo" min="10" max="100" value="100" oninput="calc()">
                 <span id="bval">100%</span>
             </div>
-            <div><input type="number" id="dist" class="slim-input" style="height:38px;" value="10" oninput="calc()"><label style="text-align:center; margin-top:2px;">Dist (m)</label></div>
+            <div>
+                <input type="number" id="dist" class="slim-input" style="height:38px;" value="20" oninput="calc()">
+                <label style="text-align:center; margin-top:2px;">Dist (m)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+            <div>
+                <label>Reserva p/ Audio / Extra</label>
+                <select id="selExtraMargin" onchange="calc()">
+                    <option value="0.2">20% Reserva (Ligera)</option>
+                    <option value="0.35" selected>35% Reserva (Audio PA / FOH)</option>
+                    <option value="0.5">50% Reserva (Producción / Luces)</option>
+                </select>
+            </div>
+            <div>
+                <label>Acometida Estándar</label>
+                <select id="selStdBreaker" onchange="calc()">
+                    <option value="auto" selected>Auto (Sugerido)</option>
+                    <option value="30">30A (10 AWG)</option>
+                    <option value="50">50A (6 AWG)</option>
+                    <option value="70">70A (4 AWG)</option>
+                    <option value="100">100A (2 AWG)</option>
+                    <option value="150">150A (1/0 AWG)</option>
+                    <option value="200">200A (3/0 AWG)</option>
+                </select>
+            </div>
         </div>
     </div>
 
     <div class="results-grid">
-        <div class="res-card" id="cardWatt"><span class="res-val" id="resWatt">0W</span><span class="res-lbl">Watts Totales</span></div>
-        <div class="res-card" id="cardBrk"><span class="res-val" id="resBrk">0A</span><span class="res-lbl">Pastilla / Fase</span></div>
-        <div class="res-card" id="cardCab"><span class="res-val" id="resCab">0</span><span class="res-lbl">CALIBRE AWG</span></div>
-        <div class="res-card" id="cardDrop"><span class="res-val" id="resDrop">0%</span><span class="res-lbl">Caída Tensión</span></div>
+        <div class="res-card" id="cardWatt">
+            <span class="res-val" id="resWatt">0W</span>
+            <span class="res-lbl">Consumo Pantalla</span>
+        </div>
+        <div class="res-card" id="cardBrk">
+            <span class="res-val" id="resBrk">0A</span>
+            <span class="res-lbl">Breaker C. Carga</span>
+        </div>
     </div>
 
-    <a href="#" id="waLink" class="btn-wa">ENVIAR REPORTE TÉCNICO</a>
-    <div class="firma">V11.6 | <span>15c0</span></div>
+    <!-- TARJETA DINÁMICA DE ACOMETIDA CON CÁLCULO DE RESERVA REAL Y MÍNIMO REQUERIDO -->
+    <div class="std-box">
+        <span class="std-title">🔌 Acometida Estándar p/ Evento (Planta / Inmueble)</span>
+        <span class="std-detail" id="stdMainBreaker"><b>Acometida Sugerida:</b> -</span>
+        <span class="std-detail" id="stdMainCable"><b>Cable Tirón Principal:</b> -</span>
+        
+        <div style="background:rgba(0,0,0,0.4); padding:6px; border-radius:6px; margin:6px 0; border:1px solid #1f2937;">
+            <span class="std-detail" id="stdDesglosePantalla" style="color:#a855f7;">📊 <b>Consumo Pantalla LED:</b> -</span>
+            <span class="std-detail" id="stdDesgloseReserva" style="color:var(--warning);">🛡️ <b>Reserva Deseada:</b> -</span>
+            <span class="std-detail" id="stdDesgloseReq" style="color:var(--accent); font-weight:bold;">⚡ <b>Total Requerido (Pantalla + Reserva):</b> -</span>
+            <span class="std-detail" id="stdDesgloseRecBreaker" style="color:var(--success); font-weight:bold;">💡 <b>Acometida Recomendada:</b> -</span>
+            <span class="std-detail" id="stdDesgloseCompromiso" style="color:var(--text); border-top:1px dashed #374151; padding-top:4px; margin-top:4px;">🔒 <b>Carga Compromiso Real (en pastilla seleccionada):</b> -</span>
+        </div>
+
+        <span class="std-detail" id="stdHeadroom" style="color:var(--success); font-weight:bold; font-size:0.7rem;"><b>Capacidad Disponible:</b> -</span>
+        <span class="std-detail" id="stdUsageAdvice" style="color:var(--accent); font-size:0.6rem; border-top:1px dashed rgba(6,182,212,0.3); padding-top:4px; margin-top:4px;"><b>Sugerencia de Uso:</b> -</span>
+        <span class="std-detail" id="stdDropVal" style="color:var(--dim); font-size:0.58rem; margin-top:2px;">Caída Tensión Tirón: -</span>
+    </div>
+
+    <div class="section" style="margin-top:8px;">
+        <label>Distribución a Pantalla & Cableado Módulos</label>
+        <div class="mod-wire-box">
+            <span class="mod-wire-title">Líneas de Bajada a Módulos</span>
+            <span class="mod-wire-line" id="resModDrop">🔌 <b>Bajadas desde C. Carga:</b> -</span>
+            <span class="mod-wire-line" id="resModLimit">🔗 <b>Límite Daisy-Chain:</b> -</span>
+            <span class="mod-wire-line" id="resModGauge">🧵 <b>Calibre Bajadas/Puentes:</b> -</span>
+            <span class="mod-wire-line" id="resModConn" style="color:var(--accent); font-weight:bold; margin-top:4px; border-top:1px dashed #374151; padding-top:3px;">⚡ Conector: -</span>
+        </div>
+    </div>
+
+    <div class="section" style="margin-top:8px;">
+        <label>Control de Video & Procesador Sugerido</label>
+        <div class="proc-box">
+            <span class="proc-title" id="resPorts">0 Puertos Gigabit (RJ45)</span>
+            <span class="proc-sub" id="resPxPort">Seguridad: ~520,000 px² | Límite máx: 650,000 px²</span>
+            <span class="proc-rec" id="resProc">Sugerencia: -</span>
+        </div>
+    </div>
+
+    <a href="#" id="waLink" class="btn-wa">ENVIAR REPORTE TÉCNICO POR WHATSAPP</a>
+    <div class="firma">LEDPOWER PRO v16.3 | <span>15c0</span></div>
 </div>
 
 <script>
@@ -163,6 +280,29 @@ function setMode(m) {
     document.getElementById('resMod').readOnly = (m === 'dim');
     document.getElementById('btnDim').classList.toggle('active', m === 'dim');
     document.getElementById('btnQty').classList.toggle('active', m === 'qty');
+    
+    const boxScreenDim = document.getElementById('boxScreenDim');
+    const boxRatioSelect = document.getElementById('boxRatioSelect');
+
+    if (m === 'dim') {
+        boxScreenDim.style.display = 'block';
+        boxRatioSelect.style.display = 'none';
+    } else {
+        boxScreenDim.style.display = 'none';
+        boxRatioSelect.style.display = 'block';
+    }
+
+    calc();
+}
+
+function onVoltChange() {
+    const voltSel = document.getElementById('volt').value;
+    const selPhases = document.getElementById('selPhases');
+    
+    if (voltSel === "220MX") {
+        selPhases.value = "3";
+        currentPhases = 3;
+    }
     calc();
 }
 
@@ -176,111 +316,270 @@ function calc() {
     const mh_cm = parseFloat(document.getElementById('mh').value) || 50;
     const pitch = parseFloat(document.getElementById('pitch').value);
     const pW = parseInt(document.getElementById('pitch').options[document.getElementById('pitch').selectedIndex].dataset.w);
-    const volt = parseInt(document.getElementById('volt').value);
+    const voltSel = document.getElementById('volt').value;
     const brillo = parseInt(document.getElementById('brillo').value);
-    const dist = parseFloat(document.getElementById('dist').value);
-    
+    const dist = parseFloat(document.getElementById('dist').value) || 1;
+
+    const extraMarginElem = document.getElementById('selExtraMargin');
+    const extraMargin = extraMarginElem ? parseFloat(extraMarginElem.value) : 0.35;
+    const userStdChoice = document.getElementById('selStdBreaker').value;
+
+    let voltWork = (voltSel === "220MX") ? 220 : 127;
+
     document.getElementById('bval').innerText = brillo + "%";
 
-    // 1. Datos Módulo
+    // 1. Datos del Módulo
     const mw_px = Math.floor((mw_cm * 10) / pitch);
     const mh_px = Math.floor((mh_cm * 10) / pitch);
-    const areaMod = (mw_cm/100) * (mh_cm/100);
-    const ampMod = (areaMod * pW * (brillo/100)) / volt;
+    const areaMod = (mw_cm / 100) * (mh_cm / 100);
+    const wModMax = areaMod * pW * (brillo / 100);
+    const ampMod = wModMax / voltWork;
 
     document.getElementById('modPxVal').innerText = `${mw_px} x ${mh_px} PX`;
     document.getElementById('modPxTotal').innerText = `${(mw_px * mh_px).toLocaleString()} px²`;
-    document.getElementById('modAmpUnit').innerText = `${ampMod.toFixed(2)}A / mod`;
-    document.getElementById('modDist').innerText = `VISIÓN: ${pitch.toFixed(1)}m`;
+    document.getElementById('modAmpUnit').innerText = `${ampMod.toFixed(2)}A / mod (${Math.round(wModMax)}W)`;
+    document.getElementById('modDist').innerText = `DIST. ÓPTIMA: ${pitch.toFixed(1)}m`;
 
-    // 2. Unidades y Resolución de Pantalla
+    // 2. Cálculo de Matriz
     let modsH = 0, modsV = 0, totalMods = 0;
+    
     if(currentMode === 'dim') {
         const sw = parseFloat(document.getElementById('sw').value) || 0;
         const sh = parseFloat(document.getElementById('sh').value) || 0;
-        modsH = Math.ceil(sw / (mw_cm/100));
-        modsV = Math.ceil(sh / (mh_cm/100));
+        modsH = Math.ceil(sw / (mw_cm / 100));
+        modsV = Math.ceil(sh / (mh_cm / 100));
         totalMods = modsH * modsV;
         document.getElementById('resMod').value = totalMods;
-        document.getElementById('resMatrix').innerText = `${modsH} x ${modsV} unidades`;
+        document.getElementById('resMatrix').innerText = `${modsH} cols x ${modsV} filas (${(modsH * mw_cm/100).toFixed(2)}m x ${(modsV * mh_cm/100).toFixed(2)}m)`;
     } else {
         totalMods = parseInt(document.getElementById('resMod').value) || 0;
-        modsH = Math.ceil(Math.sqrt(totalMods * 1.77)); 
-        modsV = Math.ceil(totalMods / modsH);
-        document.getElementById('resMatrix').innerText = `Matriz aprox: ${modsH} x ${modsV}`;
+        const ratioFactor = parseFloat(document.getElementById('selRatio').value) || 1.77;
+        
+        if (totalMods <= 0) {
+            modsH = 0; modsV = 0;
+        } else {
+            modsH = Math.round(Math.sqrt(totalMods * ratioFactor));
+            if (modsH < 1) modsH = 1;
+            if (modsH > totalMods) modsH = totalMods;
+            modsV = Math.ceil(totalMods / modsH);
+        }
+        
+        const totalAjustado = modsH * modsV;
+        document.getElementById('resMatrix').innerText = `Matriz: ${modsH} cols x ${modsV} filas (${totalAjustado} móds) | ${(modsH * mw_cm/100).toFixed(2)}m x ${(modsV * mh_cm/100).toFixed(2)}m`;
+        totalMods = totalAjustado;
     }
 
     const fullPxH = modsH * mw_px;
     const fullPxV = modsV * mh_px;
     const fullPxSq = fullPxH * fullPxV;
+    
+    // Relación de Aspecto
+    const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+    const div = gcd(fullPxH, fullPxV) || 1;
+    const ratioH = Math.round((fullPxH / div) * 10) / 10;
+    const ratioV = Math.round((fullPxV / div) * 10) / 10;
     document.getElementById('resFullRes').innerText = `${fullPxH} x ${fullPxV} px (${fullPxSq.toLocaleString()} px²)`;
+    document.getElementById('resAspect').innerText = `Relación de Aspecto: ${ratioH}:${ratioV} ${Math.abs((fullPxH/fullPxV) - 1.77) < 0.15 ? ' (Casi 16:9 📺)' : ''}`;
 
-    // 3. Electricidad & Fases
-    const wReal = (totalMods * areaMod) * pW * (brillo / 100);
-    const mBase = Math.floor(totalMods / currentPhases);
-    const residuo = totalMods % currentPhases;
-    const modsF = Array(currentPhases).fill(mBase).map((v, i) => i < residuo ? v + 1 : v);
+    // 3. Balance Eléctrico por Fase
+    const wRealMax = totalMods * wModMax;
+    const wRealProm = wRealMax * 0.45;
     
     let htmlPhases = "";
     let maxAmp = 0;
-    const colors = ["#ffffff", "#ef4444", "#3b82f6"];
+    let modsSummaryStr = "";
 
-    modsF.forEach((m, i) => {
-        const ampF = (m * areaMod * pW * (brillo/100)) / volt;
-        if(ampF > maxAmp) maxAmp = ampF;
-        let sem = (ampF > 50) ? "var(--danger)" : (ampF > 32) ? "var(--warning)" : "var(--success)";
-        htmlPhases += `<div class="phase-card" style="border-color:${sem}">
-            <span style="color:${colors[i]}; font-size:0.6rem; font-weight:800">L${i+1}</span>
-            <span class="phase-amp" style="color:${sem}">${ampF.toFixed(1)}A</span>
-            <span style="font-size:0.5rem; color:var(--dim)">${m} mod</span>
-        </div>`;
-    });
+    const is220LL = (voltSel === "220MX" && currentPhases === 3);
+
+    if (is220LL) {
+        document.getElementById('lblReparticion').innerText = "Repartición Delta 220V L-L (Pares de Fase)";
+        const mBase = Math.floor(totalMods / 3);
+        const residuo = totalMods % 3;
+        const pairs = [
+            { name: "L1 - L2", count: mBase + (residuo >= 1 ? 1 : 0), color: "#ffffff" },
+            { name: "L2 - L3", count: mBase + (residuo >= 2 ? 1 : 0), color: "#ef4444" },
+            { name: "L3 - L1", count: mBase, color: "#3b82f6" }
+        ];
+
+        const wPair = pairs.map(p => p.count * wModMax);
+        const ampL1 = Math.sqrt(Math.pow(wPair[0],2) + Math.pow(wPair[2],2) + (wPair[0]*wPair[2])) / (220 * Math.sqrt(3));
+        const ampL2 = Math.sqrt(Math.pow(wPair[0],2) + Math.pow(wPair[1],2) + (wPair[0]*wPair[1])) / (220 * Math.sqrt(3));
+        const ampL3 = Math.sqrt(Math.pow(wPair[1],2) + Math.pow(wPair[2],2) + (wPair[1]*wPair[2])) / (220 * Math.sqrt(3));
+        
+        const amps = [ampL1, ampL2, ampL3];
+        maxAmp = Math.max(...amps);
+
+        pairs.forEach((p, i) => {
+            const ampVal = amps[i];
+            let sem = (ampVal > 50) ? "var(--danger)" : (p.count > mBase && residuo > 0) ? "var(--warning)" : "var(--success)";
+            htmlPhases += `<div class="phase-card" style="border-color:${sem}">
+                <span style="color:${p.color}; font-size:0.65rem; font-weight:800">${p.name}</span>
+                <span class="phase-amp" style="color:${sem}">${ampVal.toFixed(1)}A</span>
+                <span style="font-size:0.55rem; color:var(--dim)">${p.count} móds</span>
+            </div>`;
+        });
+        modsSummaryStr = pairs.map(p => `${p.name}: ${p.count} móds`).join(' | ');
+
+    } else {
+        document.getElementById('lblReparticion').innerText = (currentPhases === 1) ? "Carga Monofásica (100% en L1)" : "Repartición de Módulos & Amperaje / Fase";
+        const mBase = Math.floor(totalMods / currentPhases);
+        const residuo = totalMods % currentPhases;
+        const modsF = Array(currentPhases).fill(mBase).map((v, i) => i < residuo ? v + 1 : v);
+        const phaseNames = currentPhases === 1 ? ["L1 (Única)"] : currentPhases === 2 ? ["L1", "L2"] : ["L1", "L2", "L3"];
+        const colors = ["#ffffff", "#ef4444", "#3b82f6"];
+
+        modsF.forEach((m, i) => {
+            const ampF = (m * wModMax) / voltWork;
+            if(ampF > maxAmp) maxAmp = ampF;
+            let sem = (ampF > 40) ? "var(--danger)" : (ampF > 25) ? "var(--warning)" : "var(--success)";
+            htmlPhases += `<div class="phase-card" style="border-color:${sem}">
+                <span style="color:${colors[i]}; font-size:0.65rem; font-weight:800">${phaseNames[i]}</span>
+                <span class="phase-amp" style="color:${sem}">${ampF.toFixed(1)}A</span>
+                <span style="font-size:0.55rem; color:var(--dim)">${m} móds</span>
+            </div>`;
+        });
+        modsSummaryStr = modsF.map((m, i) => `${phaseNames[i]}: ${m} móds`).join(' | ');
+    }
+
     document.getElementById('phaseDisplay').innerHTML = htmlPhases;
 
-    // 4. Resultados & Cable
-    const ampTarget = maxAmp * 1.25;
-    const breakers = [15, 20, 30, 40, 50, 60, 70, 80, 100, 125, 150];
-    let bSelected = breakers.find(b => b >= ampTarget) || "+150";
+    // 4. Pastilla Pantalla solo
+    const ampTargetPantalla = maxAmp * 1.25;
+    const breakers = [15, 20, 30, 40, 50, 60, 70, 80, 100, 125, 150, 200];
+    let bPantalla = breakers.find(b => b >= ampTargetPantalla) || "+200";
 
-    document.getElementById('resWatt').innerText = Math.round(wReal) + "W";
-    document.getElementById('resBrk').innerHTML = `${bSelected}A <small style="display:block; font-size:0.55rem; color:var(--dim)">${maxAmp.toFixed(1)}A p/fase</small>`;
+    document.getElementById('resWatt').innerHTML = `${Math.round(wRealMax)}W <small style="display:block; font-size:0.55rem; color:var(--dim)">Prom: ~${Math.round(wRealProm)}W</small>`;
+    document.getElementById('resBrk').innerHTML = `${bPantalla}A <small style="display:block; font-size:0.55rem; color:var(--dim)">${maxAmp.toFixed(1)}A p/fase</small>`;
+
+    // 5. CÁLCULO DE ACOMETIDA, RESERVA Y SUGERENCIA MÍNIMA DE PASTILLA
+    const stdBreakers = [30, 50, 70, 100, 150, 200];
+    const ampTotalRequerido = maxAmp * (1 + extraMargin); // Carga Pantalla + Reserva deseada
+    const recBreakerIdeal = stdBreakers.find(b => b >= ampTotalRequerido) || 200; // Breaker comercial óptimo
+
+    let selectedStdBreaker = 30;
+    if (userStdChoice === "auto") {
+        selectedStdBreaker = recBreakerIdeal;
+    } else {
+        selectedStdBreaker = parseInt(userStdChoice);
+    }
+
+    let stdGauge = "10 AWG", secStd = 5.26;
+    if (selectedStdBreaker >= 50) { stdGauge = "6 AWG (CamLok)"; secStd = 13.3; }
+    if (selectedStdBreaker >= 70) { stdGauge = "4 AWG"; secStd = 21.1; }
+    if (selectedStdBreaker >= 100) { stdGauge = "2 AWG"; secStd = 33.6; }
+    if (selectedStdBreaker >= 150) { stdGauge = "1/0 AWG"; secStd = 53.5; }
+    if (selectedStdBreaker >= 200) { stdGauge = "3/0 AWG"; secStd = 85.0; }
+
+    // MATEMÁTICA Y RESERVAS:
+    const reservaDeseadaA = maxAmp * extraMargin;
+    const cargaCompromisoTotalA = maxAmp + reservaDeseadaA;
+    const amperajeLibreRealA = selectedStdBreaker - maxAmp; // Amperaje sobrante real de la pastilla seleccionada
+    const amperajeLibreTrasReservaA = selectedStdBreaker - cargaCompromisoTotalA;
+
+    const totalPhaseMult = (currentPhases === 3 ? 1.732 : (currentPhases === 2 ? 2 : 1));
+    const wattsDisponiblesReal = Math.max(0, amperajeLibreTrasReservaA * voltWork * totalPhaseMult);
+
+    let adviceText = "";
+    if (extraMargin === 0.2) {
+        adviceText = `💡 <b>Reserva Ligera (${Math.round(extraMargin*100)}%):</b> Cargas menores como Procesador, Scaler, Laptop y Monitores.`;
+    } else if (extraMargin === 0.35) {
+        adviceText = `🔊 <b>Reserva Media (${Math.round(extraMargin*100)}%):</b> Espacio para Audio PA de apoyo, Consola FOH, Procesadores y Computadoras.`;
+    } else {
+        adviceText = `💡🔊 <b>Reserva Amplia (${Math.round(extraMargin*100)}%):</b> Espacio para Audio completo, Barredoras LED de escenario o Iluminación.`;
+    }
+
+    // Caída de tensión
+    let K = (currentPhases === 3) ? 1.732 : 2.0; 
+    const vDropStd = (K * dist * selectedStdBreaker * 0.0172) / secStd;
+    const vDropStdPerc = (voltWork > 0) ? (vDropStd / voltWork) * 100 : 0;
+
+    document.getElementById('stdMainBreaker').innerHTML = `<b>Acometida Seleccionada:</b> ${selectedStdBreaker}A (${currentPhases} Fase${currentPhases > 1 ? 's':''})`;
+    document.getElementById('stdMainCable').innerHTML = `<b>Cable Tirón Principal:</b> Calibre ${stdGauge} (${dist}m)`;
     
-    let cab = "#12", sec = 3.31;
-    if(ampTarget > 20) { cab = "#10"; sec = 5.26; }
-    if(ampTarget > 30) { cab = "#8"; sec = 8.36; }
-    if(ampTarget > 45) { cab = "#6"; sec = 13.3; }
-    if(ampTarget > 65) { cab = "#4"; sec = 21.1; }
-    document.getElementById('resCab').innerText = cab + " AWG";
+    // Inyección de valores desglosados
+    document.getElementById('stdDesglosePantalla').innerHTML = `📊 <b>Consumo Pantalla LED:</b> ${maxAmp.toFixed(1)}A por fase`;
+    document.getElementById('stdDesgloseReserva').innerHTML = `🛡️ <b>Reserva Deseada (${Math.round(extraMargin*100)}%):</b> +${reservaDeseadaA.toFixed(1)}A p/fase`;
+    document.getElementById('stdDesgloseReq').innerHTML = `⚡ <b>Total Requerido (Consumo + Reserva):</b> ${ampTotalRequerido.toFixed(1)}A por fase`;
+    document.getElementById('stdDesgloseRecBreaker').innerHTML = `💡 <b>Pastilla/Acometida Sugerida:</b> ${recBreakerIdeal}A (${currentPhases} Fases) ${selectedStdBreaker < recBreakerIdeal ? '⚠️ <span style="color:var(--danger)">(La actual de '+selectedStdBreaker+'A queda muy justa)</span>' : '✅ OK'}`;
+    document.getElementById('stdDesgloseCompromiso').innerHTML = `🔒 <b>Carga Total Estimada:</b> ${cargaCompromisoTotalA.toFixed(1)}A de ${selectedStdBreaker}A seleccionados`;
 
-    const vDropPerc = (((2 * dist * maxAmp * 0.0172) / sec) / volt) * 100;
-    document.getElementById('resDrop').innerText = vDropPerc.toFixed(1) + "%";
-    document.getElementById('cardDrop').className = "res-card " + (vDropPerc <= 3 ? "bg-ok" : vDropPerc <= 5 ? "bg-warn" : "bg-danger");
+    if (amperajeLibreTrasReservaA >= 0) {
+        document.getElementById('stdHeadroom').innerHTML = `💡🔊 <b>Capacidad Libre tras Reserva:</b> <span style="color:var(--success); font-size:0.8rem;">~${amperajeLibreTrasReservaA.toFixed(1)}A LIBRES p/fase</span> (~${Math.round(wattsDisponiblesReal)}W)`;
+    } else {
+        document.getElementById('stdHeadroom').innerHTML = `⚠️ <b>Acometida Ajustada:</b> <span style="color:var(--danger); font-size:0.8rem;">Faltan ${Math.abs(amperajeLibreTrasReservaA).toFixed(1)}A</span> p/fase para cubrir el ${Math.round(extraMargin*100)}% de reserva. (Subir pastilla a ${recBreakerIdeal}A)`;
+    }
 
-    // REPORTE WHATSAPP
-    reportMsg = `⚡ *REPORTE LEDPOWER PRO* ⚡
---------------------------
-📐 PANTALLA: ${fullPxH}x${fullPxV} px
-🔳 TOTAL PX: ${fullPxSq.toLocaleString()} px²
-📦 MODULOS: ${totalMods} (${modsH}x${modsV})
-💡 BRILLO: ${brillo}%
-🔥 WATTS: ${Math.round(wReal)}W
-🔋 MAX AMP p/f: ${maxAmp.toFixed(1)}A
-🛡️ PASTILLA: ${bSelected}A
-🧵 CABLE: ${cab} AWG (${dist}m)
-📉 CAIDA V: ${vDropPerc.toFixed(1)}%
---------------------------`;
+    document.getElementById('stdUsageAdvice').innerHTML = adviceText;
+    document.getElementById('stdDropVal').innerHTML = `Caída Tensión Tirón: ${vDropStdPerc.toFixed(1)}% ${vDropStdPerc > 3 ? '⚠️ (Utilizar calibre superior)' : '✅ OK'}`;
+
+    // 6. Cableado Por Módulo
+    const MAX_CIRCUIT_AMP = 16;
+    const maxModsPerChain = Math.floor(MAX_CIRCUIT_AMP / (ampMod || 1)) || 1;
+    const totalPowerChains = Math.ceil(totalMods / maxModsPerChain) || 1;
+    let modCableGauge = (maxModsPerChain * ampMod > 12) ? "12 AWG Uso Rudo (SJT)" : "14 AWG Uso Rudo (SJT)";
+
+    document.getElementById('resModDrop').innerHTML = `🔌 <b>Bajadas desde C. Carga:</b> ${totalPowerChains} líneas de energía independientes`;
+    document.getElementById('resModLimit').innerHTML = `🔗 <b>Límite Daisy-Chain:</b> Máx ${maxModsPerChain} módulos por serie (~${(maxModsPerChain * ampMod).toFixed(1)}A)`;
+    document.getElementById('resModGauge').innerHTML = `🧵 <b>Calibre Bajadas/Puentes:</b> ${modCableGauge}`;
+    document.getElementById('resModConn').innerHTML = `⚡ <b>Conectores:</b> PowerCON Azul/Gris (20A) / Pastillas 20A en C. Carga`;
+
+    // 7. Procesador y Puertos Gigabit
+    const SAFE_PX_PORT = 520000;
+    const portsNeeded = Math.ceil(fullPxSq / SAFE_PX_PORT) || 1;
+    
+    let procRec = "";
+    if (portsNeeded === 1) {
+        procRec = "NovaStar VX400 / TB2 | Colorlight X1/X2 | Linsn";
+    } else if (portsNeeded === 2) {
+        procRec = "NovaStar VX400 / VX600 | Colorlight X4";
+    } else if (portsNeeded <= 4) {
+        procRec = "NovaStar VX600 / VX1000 | Colorlight X8";
+    } else {
+        procRec = "NovaStar VX1000 / VX16s / H Series | Colorlight X16";
+    }
+
+    document.getElementById('resPorts').innerText = `📺 Puertos RJ45 Requeridos: ${portsNeeded}`;
+    document.getElementById('resPxPort').innerText = `Total: ${fullPxSq.toLocaleString()} px² (~${Math.round(fullPxSq/portsNeeded).toLocaleString()} px/puerto)`;
+    document.getElementById('resProc').innerText = `Procesador recomendado: ${procRec}`;
+
+    // Reporte WhatsApp
+    reportMsg = `⚡ *REPORTE TÉCNICO LEDPOWER PRO v16.3* ⚡
+----------------------------------
+📐 *PANTALLA:* ${fullPxH} x ${fullPxV} px (${fullPxSq.toLocaleString()} px²)
+🔲 *MÓDULOS:* ${totalMods} uds (${modsH}x${modsV})
+⚖️ *REPARTICIÓN:* ${modsSummaryStr}
+📏 *MEDIDAS:* ${(modsH * mw_cm/100).toFixed(2)}m x ${(modsV * mh_cm/100).toFixed(2)}m
+💡 *BRILLO:* ${brillo}% | Pitch: P${pitch}
+🔥 *CONSUMO PANTALLA:* ${Math.round(wRealMax)}W (~${Math.round(wRealProm)}W Prom)
+⚡ *SISTEMA:* ${voltWork}V | ${currentPhases} Fase(s)
+🔋 *CORRIENTE PANTALLA:* ${maxAmp.toFixed(1)}A p/fase
+----------------------------------
+🎪 *ACOMETIDA Y RESERVA:*
+- *Consumo Pantalla:* ${maxAmp.toFixed(1)}A p/fase
+- *Reserva Deseada (${Math.round(extraMargin*100)}%):* +${reservaDeseadaA.toFixed(1)}A p/fase
+- *TOTAL REQUERIDO:* ${ampTotalRequerido.toFixed(1)}A p/fase
+- *ACOMETIDA RECOMENDADA:* ${recBreakerIdeal}A (${currentPhases} Fases)
+- *Acometida Seleccionada:* ${selectedStdBreaker}A (${stdGauge}, ${dist}m)
+- *Capacidad Libre Tras Reserva:* ~${amperajeLibreTrasReservaA.toFixed(1)}A p/fase
+- *Uso de Reserva:* ${adviceText.replace(/<\/?[^>]+(>|$)/g, "")}
+----------------------------------
+🔌 *DISTRIBUCIÓN A PANTALLA:*
+- *Bajadas C. Carga:* ${totalPowerChains} líneas PowerCON
+- *Límite Daisy-Chain:* Máx ${maxModsPerChain} módulos/serie
+- *Cable Bajadas/Puentes:* ${modCableGauge}
+----------------------------------
+🌐 *VIDEO:* ${portsNeeded} Puerto(s) RJ45
+🖥️ *PROCESADOR:* ${procRec}
+----------------------------------`;
 
     const waBtn = document.getElementById('waLink');
     waBtn.onclick = function(e) {
         e.preventDefault();
-        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        if (isMobile) {
-            window.location.href = "whatsapp://send?text=" + encodeURIComponent(reportMsg);
-        } else {
-            window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(reportMsg), '_blank');
-        }
+        const urlWa = "https://api.whatsapp.com/send?text=" + encodeURIComponent(reportMsg);
+        window.open(urlWa, '_blank');
     };
 }
+
 calc();
 </script>
 </body>
